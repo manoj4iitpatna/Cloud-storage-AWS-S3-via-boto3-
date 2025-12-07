@@ -36,6 +36,32 @@ boto3	SDK to interact with AWS
 AWS S3	Cloud object storage
 from __future__ import annotations
 
+import os
+from dataclasses import dataclass
+
+
+@dataclass
+class S3Config:
+    """Configuration values for connecting to an S3 bucket."""
+    bucket_name: str
+    region: str = "ap-south-1"
+
+
+def get_config() -> S3Config:
+    """Load configuration from environment variables.
+
+    Expected environment variables:
+    - S3_BUCKET_NAME: Name of the S3 bucket to use.
+    - AWS_REGION (optional): AWS region name, defaults to 'ap-south-1'.
+    """
+    bucket_name = os.getenv("S3_BUCKET_NAME")
+    if not bucket_name:
+        raise RuntimeError("S3_BUCKET_NAME environment variable is not set.")
+
+    region = os.getenv("AWS_REGION", "ap-south-1")
+
+    return S3Config(bucket_name=bucket_name, region=region)
+
 import mimetypes
 from pathlib import Path
 from typing import List, Optional
