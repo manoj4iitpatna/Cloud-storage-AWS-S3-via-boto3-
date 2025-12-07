@@ -1,4 +1,4 @@
-loud Storage using AWS S3 (Python + boto3)
+Cloud Storage using AWS S3 (Python + boto3)
 
 This project demonstrates how to upload, store, manage, and retrieve files from Amazon Web Services (AWS) S3 using Python and boto3.
 It can be used for cloud-based storage systems, data pipelines, backups, automation, and API integration with services like FastAPI, Flask, or Lambda.
